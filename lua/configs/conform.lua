@@ -1,8 +1,18 @@
 local options = {
   formatters_by_ft = {
     lua = { "stylua" },
-    -- css = { "prettier" },
-    -- html = { "prettier" },
+
+    json = { "prettier" },
+    css = { "prettier" },
+    html = { "prettier" },
+    javascript = { "prettier" },
+    typescript = { "prettier" },
+
+    c = { "clang-format" },
+    cpp = { "clang-format" },
+    csharp = { "omnisharp_codeformat" },
+    python = { "black" },
+    rust = { "rustfmt" },
   },
 
   -- format_on_save = {
