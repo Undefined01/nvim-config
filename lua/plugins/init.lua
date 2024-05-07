@@ -27,9 +27,9 @@ return {
   -- },
   --
   {
-  	"nvim-treesitter/nvim-treesitter",
-  	opts = {
-  		ensure_installed = {
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      ensure_installed = {
         "json",
         "latex",
         "markdown",
@@ -54,8 +54,8 @@ return {
         "rust",
         "typescript",
         "vue",
-  		},
-  	},
+      },
+    },
   },
 
   {
@@ -103,21 +103,77 @@ return {
       },
     },
   },
+
+  {
+    "olimorris/persisted.nvim",
+    lazy = true,
+    cmd = {
+      "SessionToggle",
+      "SessionStart",
+      "SessionStop",
+      "SessionSave",
+      "SessionLoad",
+      "SessionLoadLast",
+      "SessionLoadFromFile",
+      "SessionDelete",
+    },
+    config = function()
+      require("persisted").setup()
+    end,
+  },
+  {
+    "folke/flash.nvim",
+    lazy = true,
+    event = { "CursorHold", "CursorHoldI" },
+    config = function()
+      require("flash").setup()
+    end,
+  },
+  {
+    "dstein64/nvim-scrollview", -- scrollbar
+    event = { "BufReadPost", "BufAdd", "BufNewFile" },
+    config = function()
+      require("scrollview").setup({
+        mode = "virtual",
+        excluded_filetypes = { "NvimTree", "terminal", "nofile", "aerial" },
+        winblend = 0,
+        signs_on_startup = { "diagnostics", "folds", "marks", "search", "spell" },
+      })
+    end,
+  },
+  {
+    "sindrets/diffview.nvim",
+    lazy = true,
+    cmd = { "DiffviewOpen", "DiffviewClose" },
+    config = function()
+      require("diffview").setup()
+    end,
+  },
+
   -- {
-  --   "zbirenbaum/copilot-cmp",
-  --   dependencies = "copilot.lua",
-  --   event = "InsertEnter",
-  --   opts = {},
-  --   config = function(_, opts)
-  --     local copilot_cmp = require("copilot_cmp")
-  --     copilot_cmp.setup(opts)
-  --     -- attach cmp source whenever copilot attaches
-  --     -- fixes lazy-loading issues with the copilot cmp source
-  --     require("lazyvim.util").lsp.on_attach(function(client)
-  --       if client.name == "copilot" then
-  --         copilot_cmp._on_insert_enter({})
-  --       end
-  --     end)
-  --   end,
+  --   "mfussenegger/nvim-dap",
+  --   lazy = true,
+  --   cmd = {
+  --     "DapSetLogLevel",
+  --     "DapShowLog",
+  --     "DapContinue",
+  --     "DapToggleBreakpoint",
+  --     "DapToggleRepl",
+  --     "DapStepOver",
+  --     "DapStepInto",
+  --     "DapStepOut",
+  --     "DapTerminate",
+  --   },
+  --   config = require("tool.dap"),
+  --   dependencies = {
+  --     {
+  --       "rcarriga/nvim-dap-ui",
+  --       config = require("tool.dap.dapui"),
+  --       dependencies = {
+  --         "nvim-neotest/nvim-nio",
+  --       },
+  --     },
+  --     { "jay-babu/mason-nvim-dap.nvim" },
+  --   },
   -- },
 }
