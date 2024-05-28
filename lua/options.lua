@@ -33,3 +33,30 @@ for _, lang in ipairs(languages) do
   })
 end
 
+local osc52 = require('vim.ui.clipboard.osc52')
+local clipboard_cache = {}
+vim.g.clipboard = {
+  name = 'OSC 52',
+  copy = {
+    ['+'] = function(text)
+      clipboard_cache['+'] = text
+      osc52.copy('+', text)
+    end,
+    ['*'] = function(text)
+      clipboard_cache['*'] = text
+      osc52.copy('*', text)
+    end,
+  },
+  -- disabling pasting from OSC 52 because it's not working properly in Windows Terminal
+  -- use cached clipboard instead
+  paste = {
+    ['+'] = function()
+      -- return osc52.paste('+')
+      return clipboard_cache['+']
+    end,
+    ['*'] = function()
+      return clipboard_cache['*']
+    end,
+  },
+}
+
