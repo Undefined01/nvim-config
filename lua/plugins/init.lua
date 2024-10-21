@@ -29,7 +29,7 @@ return {
     config = function()
       require "configs.lspconfig"
     end
-  }
+  },
   {
     "nvim-treesitter/nvim-treesitter",
     opts = {
