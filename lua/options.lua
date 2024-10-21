@@ -40,11 +40,11 @@ vim.g.clipboard = {
   copy = {
     ['+'] = function(text)
       clipboard_cache['+'] = text
-      osc52.copy('+', text)
+      osc52.copy('+')(text)
     end,
     ['*'] = function(text)
       clipboard_cache['*'] = text
-      osc52.copy('*', text)
+      osc52.copy('*')(text)
     end,
   },
   -- disabling pasting from OSC 52 because it's not working properly in Windows Terminal
