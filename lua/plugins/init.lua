@@ -28,7 +28,6 @@ return {
     opts = {
       ensure_installed = {
         "json",
-        "latex",
         "markdown",
         "markdown_inline",
         "toml",
