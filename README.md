@@ -1,5 +1,4 @@
-# starter
-Starter config for NvChad
+**This repo is supposed to be used as config by NvChad users!**
 
 On the first run, please run the following commands in the neovim terminal to authenticate the plugins:
 
