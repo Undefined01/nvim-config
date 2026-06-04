@@ -10,13 +10,19 @@ On the first run, please run the following commands in the neovim terminal to au
 If you are using NixOS and the nvim config is managed by homemanager, you can link this repo and use `NVIM_APPNAME` to temporary modify and test a new configuration.
 
 ```
+git remote add upstream github.com:NvChad/starter
+git pull upstream main
+
 cp -r ~/.config/nvim ~/.config/tmp-nvim
 chmod -R +w ~/.config/tmp-nvim
 # or soft link this repo
 ln -s $PWD ~/.config/tmp-nvim
-NVIM_APPNAME=tmp-nvim nvim
+NVIM_APPNAME=tmp-nvim nvim --headless "+Lazy! update" +qa
 
 # clean up
 rm -r ~/.local/shared/tmp-nvim
 rm ~/.config/tmp-nvim
+
+git remote add ssh github.com:Undefined01/nvim-config
+git push ssh HEAD:main
 ```
